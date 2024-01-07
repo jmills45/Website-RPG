@@ -32,9 +32,7 @@ main {
 
 /** -------------- Footer Area -------------- **/
 
-footer {
-    
-}
+
 
 /** -------------- Dashboard Area -------------- **/
 
@@ -126,9 +124,22 @@ footer {
 /** -------------- Gameboard Area -------------- **/
 
 .gameboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1em;
     flex: 3;
     background-color: #233142;
+    padding: 1em;
 }
 
+.square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e3e3e3;
+}
 
+.validMove {
+    background-color: beige;
+}
 
