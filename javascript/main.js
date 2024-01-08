@@ -4,14 +4,22 @@ console.log(gameboard);
 const gameboardSquares = ["", "", "", "", "X", "", "", "", ""];
 console.log(gameboardSquares);
 
-gameboardSquares.forEach((value, index) => {
-    const square = document.createElement('div');
-    square.addEventListener('click', moveToSquare);
-    square.classList.add('square');
-    square.id = 'square'+ index;
-    square.innerText = value;
-    gameboard.appendChild(square);
-})
+function renderGameboard() {
+
+    while(gameboard.firstChild) {
+        gameboard.removeChild(gameboard.firstChild);
+    }
+
+    gameboardSquares.forEach((value, index) => {
+        const square = document.createElement('div');
+        square.addEventListener('click', moveToSquare);
+        square.classList.add('square');
+        square.id = 'square'+ index;
+        square.innerText = value;
+        gameboard.appendChild(square);
+    })
+}
+
 
 function checkIfCanMove(gameBoardArray) {
     const playerSpace = gameBoardArray.findIndex((value) => {
@@ -23,17 +31,31 @@ function checkIfCanMove(gameBoardArray) {
     const upMove = playerSpace - 3;
     const downMove = playerSpace + 3;
 
-    const leftMoveObject = document.querySelector("#square"+`${leftMove}`);
-    leftMoveObject.classList.add('validMove');
+    const leftEdge = [0, 3, 6];
+    const rightEdge = [2, 5, 8];
+    const topEdge = [0, 1, 2];
+    const botEdge = [6, 7, 8];
 
-    const rightMoveObject = document.querySelector("#square"+`${rightMove}`);
-    rightMoveObject.classList.add('validMove');
 
-    const upMoveObject = document.querySelector("#square"+`${upMove}`);
-    upMoveObject.classList.add('validMove');
+    if (!leftEdge.includes(playerSpace)) {
+        const leftMoveObject = document.querySelector("#square"+`${leftMove}`);
+        leftMoveObject.classList.add('validMove');
+    }
 
-    const downMoveObject = document.querySelector("#square"+`${downMove}`);
-    downMoveObject.classList.add('validMove');
+    if (!rightEdge.includes(playerSpace)) {
+        const rightMoveObject = document.querySelector("#square"+`${rightMove}`);
+        rightMoveObject.classList.add('validMove');
+    }
+
+    if (!topEdge.includes(playerSpace)) {
+        const upMoveObject = document.querySelector("#square"+`${upMove}`);
+        upMoveObject.classList.add('validMove');
+    }
+
+    if (!botEdge.includes(playerSpace)) {
+        const downMoveObject = document.querySelector("#square"+`${downMove}`);
+        downMoveObject.classList.add('validMove');
+    }
 }
 
 function moveToSquare(e) {
@@ -52,4 +74,8 @@ function moveToSquare(e) {
         }
     })
 
+    renderGameboard();
+    checkIfCanMove(gameboardSquares)
 }
+
+renderGameboard();
