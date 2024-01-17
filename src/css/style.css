@@ -1,0 +1,162 @@
+:root {
+    --board-size: 3;
+  }
+
+* {
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    height: 100svh;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/** -------------- Header Area -------------- **/
+
+header {
+    height: 75px;
+    background-color: #f95959;
+    box-shadow: 0px 5px 5px 0px #000000;
+}
+
+/** -------------- Main Area -------------- **/
+
+main {
+    display: flex;
+    flex: 1;
+}
+
+/** -------------- Footer Area -------------- **/
+
+
+
+/** -------------- Dashboard Area -------------- **/
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: #233142;
+}
+
+/** ------- Unit Area ------- **/
+
+.unit-selection {
+    display: flex;
+    gap: 1em;
+    flex: 2;
+    background-color: #455d7a;
+    padding: 1em;
+    box-shadow: 0px 5px 5px 0px #00000080;
+}
+
+.player-unit {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    flex: 1;
+    background-color: #455d7a;
+}
+
+.player-unit-portrait {
+    flex: 2;
+    background-color: #e3e3e3;
+}
+
+.player-unit-stats {
+    flex: 1;
+    background-color: #e3e3e3;
+}
+
+/** ------- Action Area ------- **/
+
+.unit-action {
+    display: flex;
+    gap: 1em;
+    flex: 1;
+    background-color: #455d7a;
+    padding: 1em;
+    box-shadow: 0px 5px 5px 0px #00000080;
+}
+
+.player-action-menu {
+    flex: 1;
+    background-color: #455d7a;
+}
+
+.unit-action ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 1em;
+    height: 100%;
+    list-style: none;
+}
+
+.unit-action li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    background-color: #e3e3e3;
+}
+
+/** ------- Description Area ------- **/
+
+.unit-logs {
+    display: flex;
+    gap: 1em;
+    flex: 1;
+    background-color: #455d7a;
+    padding: 1em;
+    box-shadow: 0px 5px 5px 0px #00000080;
+}
+
+.player-unit-logs {
+    flex: 1;
+    background-color: #e3e3e3; 
+}
+
+/** -------------- Gameboard Area -------------- **/
+
+.gameboard {
+    display: grid;
+    grid-template-columns: repeat(var(--board-size), 1fr);
+    grid-template-rows: repeat(var(--board-size), 1fr);
+    gap: 1em;
+    flex: 3;
+    background-color: #233142;
+    padding: 1em;
+}
+
+.square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e3e3e3;
+}
+
+.validMove {
+    background-color: rgb(248, 248, 191);
+    animation: blink 3s ease-in-out infinite;
+}
+
+@keyframes blink {
+    25% {
+        background-color: #e3e3e3;
+    }
+    50% {
+        background-color: rgb(248, 248, 191);
+    }
+    75% {
+        background-color: #e3e3e3;
+    }
+}

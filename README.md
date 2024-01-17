@@ -1,2 +1,2 @@
-# Website-RPG
-Javascript Website RPG Game
+# to-do-list
+Odin Project: To-Do-List
