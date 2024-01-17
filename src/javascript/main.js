@@ -1,25 +1,8 @@
+import { renderGameboard, findBoardEdges, setGameboardSize, getGameboard, checkIfEmpty, updateGameboard } from './map';
+
 const gameboard = document.querySelector('.gameboard');
 
 const gameboardSquares = ["", "", "", "", "", "", "", "X", "", "", "", "", "", "", "", ""];
-
-function renderGameboard() {
-
-    const boardSize = Math.ceil(Math.sqrt(gameboardSquares.length));
-    document.documentElement.style.setProperty('--board-size', `${boardSize}`)
-    
-    while(gameboard.firstChild) {
-        gameboard.removeChild(gameboard.firstChild);
-    }
-
-    gameboardSquares.forEach((value, index) => {
-        const square = document.createElement('div');
-        square.addEventListener('click', moveToSquare);
-        square.classList.add('square');
-        square.id = 'square'+ index;
-        square.innerText = value;
-        gameboard.appendChild(square);
-    })
-}
 
 function checkIfCanMove(gameBoardArray) {
     const playerSpace = gameBoardArray.findIndex((value) => {
@@ -77,6 +60,17 @@ function moveToSquare(e) {
     renderGameboard();
     checkIfCanMove(gameboardSquares)
 }
-
+setGameboardSize(36);
 renderGameboard();
+updateGameboard("test", 5)
+renderGameboard();
+
+const [topEdge, botEdge, leftEdge, rightEdge] = findBoardEdges();
+
+console.log(topEdge);
+console.log(botEdge);
+console.log(leftEdge);
+console.log(rightEdge);
+
+console.log(checkIfEmpty(10))
 
