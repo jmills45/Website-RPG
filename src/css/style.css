@@ -146,15 +146,32 @@ main {
 
 .validMove {
     background-color: rgb(248, 248, 191);
-    animation: blink 3s ease-in-out infinite;
+    animation: validBlink 3s ease-in-out infinite;
 }
 
-@keyframes blink {
+@keyframes validBlink {
     25% {
         background-color: #e3e3e3;
     }
     50% {
         background-color: rgb(248, 248, 191);
+    }
+    75% {
+        background-color: #e3e3e3;
+    }
+}
+
+.invalidMove {
+    background-color: rgba(249, 96, 96, 0.999);
+    animation: invalidBlink 3s ease-in-out infinite;
+}
+
+@keyframes invalidBlink {
+    25% {
+        background-color: #e3e3e3;
+    }
+    50% {
+        background-color: rgba(249, 96, 96, 0.999);
     }
     75% {
         background-color: #e3e3e3;

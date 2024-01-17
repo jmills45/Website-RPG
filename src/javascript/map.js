@@ -21,7 +21,23 @@ function renderGameboard() {
         square.id = 'square'+ index;
         square.innerText = value;
         gameboardElement.appendChild(square);
+
+        if (typeof value === 'object' ) {
+            square.innerText = value.name;
+            square.addEventListener('click', value.interact);
+        }
     })
+}
+
+// Set the gameboard size
+function setGameboardSize(size){
+    gameboardSize = size;
+    gameboard = Array(gameboardSize).fill("")
+}
+
+// Retrieve the current gameboard
+function getGameboard() {
+    return gameboard;
 }
 
 // Find board edges to prevent moving off map
@@ -57,23 +73,10 @@ function getBoardEdges() {
     return [ topEdge, botEdge, leftEdge, rightEdge ]
 }
 
-// Set the gameboard size
-function setGameboardSize(size){
-    gameboardSize = size;
-    gameboard = Array(gameboardSize).fill("")
-}
-
-// Retrieve the current gameboard
-function getGameboard() {
-    return gameboard;
-}
-
 function checkIfEmpty(indexToCheck) {
     if (gameboard[indexToCheck] === "") {
-        console.log("space available");
         return true;
     } else {
-        console.log("space occupied");
         return gameboard[indexToCheck];
     }
 }

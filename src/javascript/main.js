@@ -1,76 +1,13 @@
-import { renderGameboard, findBoardEdges, setGameboardSize, getGameboard, checkIfEmpty, updateGameboard } from './map';
+import { renderGameboard, getBoardEdges, setGameboardSize, getGameboard, checkIfEmpty, updateGameboard } from './map';
+import { checkIfCanMove, moveToSquare } from './move';
+import { createTerrain } from './terrain';
 
-const gameboard = document.querySelector('.gameboard');
-
-const gameboardSquares = ["", "", "", "", "", "", "", "X", "", "", "", "", "", "", "", ""];
-
-function checkIfCanMove(gameBoardArray) {
-    const playerSpace = gameBoardArray.findIndex((value) => {
-        return value === 'X';
-    })
-
-    const leftMove = playerSpace - 1;
-    const rightMove = playerSpace + 1;
-    const upMove = playerSpace - 4;
-    const downMove = playerSpace + 4;
-
-    const leftEdge = [0, 4, 8, 12];
-    const rightEdge = [3, 7, 11, 15];
-    const topEdge = [0, 1, 2, 3];
-    const botEdge = [12, 13, 14, 15];
-
-
-    if (!leftEdge.includes(playerSpace)) {
-        const leftMoveObject = document.querySelector("#square"+`${leftMove}`);
-        leftMoveObject.classList.add('validMove');
-    }
-
-    if (!rightEdge.includes(playerSpace)) {
-        const rightMoveObject = document.querySelector("#square"+`${rightMove}`);
-        rightMoveObject.classList.add('validMove');
-    }
-
-    if (!topEdge.includes(playerSpace)) {
-        const upMoveObject = document.querySelector("#square"+`${upMove}`);
-        upMoveObject.classList.add('validMove');
-    }
-
-    if (!botEdge.includes(playerSpace)) {
-        const downMoveObject = document.querySelector("#square"+`${downMove}`);
-        downMoveObject.classList.add('validMove');
-    }
-}
-
-function moveToSquare(e) {
-    const index = e.target.id.replace(/[^0-9]/g, '');
-    const classes = e.target.classList;
-
-    classes.forEach((value) => {
-        if (value === 'validMove') {
-            const currentSquare = gameboardSquares.findIndex((value) => {
-                return value === 'X';
-            })
-
-            gameboardSquares[currentSquare] = "";
-
-            gameboardSquares[index] = 'X';
-        }
-    })
-
-    renderGameboard();
-    checkIfCanMove(gameboardSquares)
-}
 setGameboardSize(36);
+updateGameboard("player", 9)
+updateGameboard(createTerrain('forest', 1, 10), 10);
+updateGameboard(createTerrain('rock', 2, 18), 18);
+updateGameboard(createTerrain('town', 3, 22), 22);
 renderGameboard();
-updateGameboard("test", 5)
-renderGameboard();
 
-const [topEdge, botEdge, leftEdge, rightEdge] = findBoardEdges();
-
-console.log(topEdge);
-console.log(botEdge);
-console.log(leftEdge);
-console.log(rightEdge);
-
-console.log(checkIfEmpty(10))
+checkIfCanMove();
 
